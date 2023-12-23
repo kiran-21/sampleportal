@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>nucleichealth</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="vendors/jquery-bar-rating/css-stars.css" />
+    <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css" />
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="css/demo_1/style.css" />
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="images/NH.png"/>
+    <style>
+
+      #TD_error,#TP_error,#TC_error,#Credit_error, 
+      #GSt_error,#Address_error, #Email_error, #Mobile_error,
+      #Name_error {
+            position: absolute;
+            color: #ff0000;
+            font-size: 13px;
+      }
+
+    #errorSubmit{
+            position: absolute;
+            color: #ff0000;
+            font-size: 13px;
+            float: right;  
+    }
+
+    </style>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <div class="row p-0 m-0 proBanner" id="proBanner">
+        <div class="col-md-12 p-0 m-0">
+        </div>
+      </div>
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile border-bottom">
+            <a href="#" class="nav-link flex-column">
+              <div class="nav-profile-image">
+                <img src="images/faces/face1.jpg" alt="profile" />
+                <!--change to offline or busy as needed-->
+              </div>
+              <div class="nav-profile-text d-flex ms-0 mb-3 flex-column">
+                <span class="font-weight-semibold mb-1 mt-2 text-center">Nucleic Health</span>
+               </div>
+            </a>
+          </li>
+          <li class="nav-item pt-3">
+            <a class="nav-link d-block" href="index.html">
+           </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#f1">
+              <i class="mdi mdi-account-card-details menu-icon"></i>
+              <span class="menu-title">Suplier Details</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="#f2">
+                <i class="mdi mdi-account-key menu-icon"></i>
+                <span class="menu-title"> Details</span>
+              </a>
+            </li>
+            
+          <li class="nav-item">
+            <a class="nav-link" href="#f3">
+              <i class="mdi mdi-credit-card menu-icon"></i>
+              <span class="menu-title">Credentials</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#f4">
+              <i class="mdi mdi-file-document-box menu-icon"></i>
+              <span class="menu-title">Terms</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#f5">
+              <i class="mdi mdi-account-multiple menu-icon"></i>
+              <span class="menu-title">Submit</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="datatable.html">
+              <i class="mdi mdi-account-edit menu-icon"></i>
+              <span class="menu-title">View & Edit </span>
+            </a>
+          </li>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        <!-- <div id="settings-trigger"><i class="mdi mdi-settings"></i></div> -->
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close mdi mdi-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-default-theme">
+            <div class="img-ss rounded-circle bg-light border me-3"></div>Default
+          </div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme">
+            <div class="img-ss rounded-circle bg-dark border me-3"></div>Dark
+          </div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles default primary"></div>
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles light"></div>
+          </div>
+        </div>
+        <!-- partial -->
+        <!-- partial:partials/_navbar.html -->
+        
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="row">
+            <!-- akshay work stops -->
+                     
+                  <div class="row">
+              <section class="about-section" id="f1">
+                <div class="container">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">supplier Details</Details></h4>
+                    <!-- <p class="card-description"> Add classes like <code>.form-control-lg</code> and <code>.form-control-sm</code>. </p> -->
+                    <div class="form-group">
+
+                      <label>Supplier category</label>
+                      <select class="form-control form-control-lg" id="Supplier_Category" style="width: 100%;">
+                      <option hidden selected>Select one...</option>
+                      <option value="Pharmacy">Pharmacy</option>
+                      <option value="Physiotherapy">Physiotherapy</option>
+                      <option value="Nursing Service">Nursing Service</option>
+                      <option value="Radiology">Radiology</option>
+                      <option value="Laboratory">Laboratory</option>
+                      </select>
+                     <br>
+
+                      <div class="form-group">
+                        <label>Supplier Name</label>
+                        <input type="text" class="form-control" id="Supplier_Name" onkeyup="validateName()"/>
+                        <span id="Name_error"></span>
+                      </div>
+                      <div class="form-group">
+                        <label>Supplier Address</label>
+                        <input type="text" class="form-control" id="Supplier_Address" placeholder="Supplier Address" onkeyup="validateAddress()" />
+                        <span id ="Address_error"></span>
+                      </div>
+                    </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Akshay  work Starts -->
+          <section class="about-section" id="f2">
+            <div class="container">
+          <div class="col-6 grid-margin stretch-card">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Details</Details></h4>
+                <div class="form-group">
+                  <label>Contact Person</label>
+                  <input type="text" class="form-control" id="Contact_Person" placeholder="Contact Person" aria-label="Contact Person" />
+      
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Email ID</label>
+                  <input type="text" class="form-control" id="Email_ID" placeholder="Enter email id" onkeyup="validateEmail()"/>
+                  <span id ="Email_error"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="Mobile_Number">Mobile number </label>
+                  <input type="number" class="form-control" id="Mobile_Number" placeholder="Mobile Number" onkeyup="validateMobile()"/>
+                  <span id ="Mobile_error"></span>
+                </div>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+          
+                 <section class="about-section" id="f3">
+                    <div class="container">
+                 <div class="col-md-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Credentials</Details></h4>
+                       <div class="form-group">
+                        <label>GST Number</label>
+                        <input type="Text" class="form-control form-control-sm" id="Gst_Number" placeholder="Gst Number"  onkeyup="validateGst()"/>
+                        <span id ="GSt_error"></span>
+                        
+                      </div>
+                      <div class="form-group" id="DL">
+                        <label> Drug License Number.</label>
+                        <input type="text" class="form-control" id="Drug_Licenses" placeholder="Drug Licenses Number" aria-label=" Drug Licenses Number"  onkeyup="validateDl()" />
+                        <span id ="DL_error"></span>
+                      </div>
+                      <div class="form-group">
+                        <label>Credit Period</label>
+                        <input type="text" class="form-control form-control-sm" id="Credit_Period" placeholder="Credit Period" aria-label="Credit Period" onkeyup="validateCredit()"/>
+                        <span id ="Credit_error"></span>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+           <!--akshay work 2-->
+                 <section class="about-section" id="f4">
+                  <div class="container">
+                 <div class="col-6 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 class="card-title">Terms</h4>
+                      <!-- <form class="forms-sample"> -->
+                       <div class="form-group">
+                          <label for="exampleTextarea1">Terms & Conditions</label>
+                          <textarea
+                            class="form-control" id="Terms_Conditions" rows="3" onkeyup="validateTC()" >
+                          </textarea>
+                          <span id ="TC_error"></span>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleTextarea1">Terms of Payment</label>
+                          <textarea
+                            class="form-control" id="Terms_Payment" rows="3" onkeyup="validateTP()">
+                          </textarea>
+                          <span id ="TP_error"></span>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleTextarea1">Terms Dispatch</label>
+                          <textarea
+                            class="form-control" id="Terms_Dispatch" rows="3" onkeyup="validateTD()">
+                          </textarea>
+                          <span id ="TD_error"></span>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+                 <!--akshaywork 2 stop -->
+                 <!--akshay work starts -->
+                 <section class="about-section" id="f5">
+                  <div class="container">
+                 <div class="col-6 grid-margin stretch-card">
+                  <div class="card">
+                  <div class="card-body">
+                  <h4 class="card-title">Submit</h4>
+                  <p class="card-description">Are you sure you want to submit the form..?</p>
+                    <button type="button" onclick="onFormsubmit()" class="btn btn-primary me-2"> Submit </button>
+                    <button class="btn btn-light">Cancel</button>
+                    <br><br>
+                    <div>&nbsp;&nbsp;&nbsp;
+                      <span id ="errorSubmit"></span>
+                    </div>
+                </div>
+                
+                
+              </form>
+              </div>
+            </div>
+          </div>
+        </section>
+            <!--akshay work stop-->
+           
+              
+            </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">© 2022 <a target="_blank">Nucleic Health Innovation </a>. All rights reserved.</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+
+    
+
+
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="vendors/chart.js/Chart.min.js"></script>
+    <script src="vendors/flot/jquery.flot.js"></script>
+    <script src="vendors/flot/jquery.flot.resize.js"></script>
+    <script src="vendors/flot/jquery.flot.categories.js"></script>
+    <script src="vendors/flot/jquery.flot.fillbetween.js"></script>
+    <script src="vendors/flot/jquery.flot.stack.js"></script>
+    <script src="js/jquery.cookie.js" type="text/javascript"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="js/off-canvas.js"></script>
+    <script src="js/hoverable-collapse.js"></script>
+    <script src="js/misc.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="js/dashboard.js"></script>
+    <script>
+
+
+
+                let Name_error = document.getElementById("Name_error");
+                let Mobile_error = document.getElementById('Mobile_error');
+                let Email_error = document.getElementById('Email_error');
+                let Address_error = document.getElementById('Address_error');
+                let Gst_error = document.getElementById('Gst_error');
+                let Dl_error = document.getElementById('Dl_error');
+                let Credit_error = document.getElementById('Credit_error');
+                let TC_error =document.getElementById("TC_error");
+                let TP_error = document.getElementById("TP_error");;
+                let TD_error = document.getElementById("TD_error");;
+
+                function validateName(){
+                  let Supplier_Name = document.getElementById("Supplier_Name").value;
+                  if(Supplier_Name.length == 0){
+                    Name_error.innerHTML = "Name is required *";
+                    return false;
+                  }
+                  if(!Supplier_Name.match(/^[A-Za-z]{3,20}$/)){
+                    Name_error.innerHTML ="Provide a proper name";
+                  }
+                  if(Supplier_Name.match(/^[A-Za-z]{3,20}$/)){
+                    Name_error.innerHTML ="";
+                    return true;
+                  }
+                }
+
+                function validateMobile(){
+                  let Mobile_Number = document.getElementById("Mobile_Number").value;
+                  if(Mobile_Number.length !== 10){
+                    Mobile_error.innerHTML ="Exactly 10 digits needed";
+                    return false;
+                  }
+                  if(!Mobile_Number.match(/[9876]{1}[0-9]{9}/)){
+                    Mobile_error.innerHTML ="Provide a valid number";
+                    return false;
+                  }
+                  if(Mobile_Number.match(/[9876]{1}[0-9]{9}/)){
+                    Mobile_error.innerHTML ="";
+                    return true;
+                  }
+                }
+      
+                function validateEmail(){
+                  let Email_ID = document.getElementById("Email_ID").value;
+                  if(Email_ID.length == 0){
+                    Email_error.innerHTML = "Email is required*";
+                    return false;
+                  }
+                  if(!Email_ID.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)){
+                    Email_error.innerHTML ="Provide a valid email";
+                    return false;
+                  }
+                  if(Email_ID.match(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)){
+                    Email_error.innerHTML ="";
+                    return true;
+                  }
+                }
+
+                function validateAddress(){
+                  let Supplier_Address = document.getElementById("Supplier_Address").value;
+                  if(Supplier_Address.length == 0){
+                    Address_error.innerHTML = "Address is required *";
+                    return false;
+                  }
+                  if(Supplier_Address.match(/[A-Za-z0-9]{5,}/)){
+                    Address_error.innerHTML ="";
+                    return true;
+                  }
+                }
+
+                function validateGst(){
+                  let Gst_Number = document.getElementById("Gst_Number").value;
+                  if(Gst_Number.length == 0){
+                    Gst_error.innerHTML = "GST is required *";
+                    return false;
+                  }
+                  if(!Gst_Number.match(/[A-Za-z0-9]{15}/)){
+                    Gst_error.innerHTML ="Gst number is not valid";
+                    return false;
+                  }
+                  if(Gst_Number.match(/[A-Za-z0-9]{15}/)){
+                    Gst_error.innerHTML ="";
+                    return true;
+
+                  }
+                }
+                function validateDl(){
+                  let Drug_Licenses = document.getElementById("Drug_Licenses").value;
+                  if(Drug_Licenses.length == 0){
+                    Gst_error.innerHTML = "GST is required *";
+                    return false;
+                  }
+                  if(Drug_Licenses.length !==0){
+                    Gst_error.innerHTML ="";
+                    return true;
+                  }
+
+                }
+
+                function validateTC(){
+                  let Terms_Conditions = document.getElementById("Terms_Conditions").value;
+                  if(Terms_Conditions.length !== 10){
+                    TC_error.innerHTML = "Terms and Condition Required";
+                  }
+                  if(Terms_Conditions.length > 10){
+                    TC_error.innerHTML ="";
+                    return true;
+                    
+                  }
+
+                }
+
+            var edit = false;
+            var id = null;
+            let params = new URLSearchParams(document.location.search);
+            if(params){
+              id = params.get("id"); // is the string "Jonathan"
+              edit = params.get("edit"); // is the number 18
+              console.log
+              console.log(id,edit);
+       
+              $.get(`/get_data_by_ID?id=${id}` ,(data , textStatus)=>{
+                // document.getElementById('Supplier_ID').value = data.Supplier_ID;
+                document.getElementById("Supplier_Category").value= data.Supplier_Category;
+                document.getElementById("Supplier_Name").value= data.Supplier_Name;
+                document.getElementById("Supplier_Address").value= data.Supplier_Address;
+                document.getElementById("Contact_Person").value= data.Contact_Person;
+                document.getElementById("Email_ID").value= data.Email_ID;
+                document.getElementById("Mobile_Number").value= data.Mobile_Number;
+                document.getElementById("Gst_Number").value= data.Gst_Number;
+                document.getElementById("Drug_Licenses").value= data.Drug_Licenses;
+                document.getElementById("Credit_Period").value= data.Credit_Period;
+                document.getElementById("Terms_Conditions").value= data.Terms_Conditions;
+                document.getElementById("Terms_Payment").value= data.Terms_Payment;
+                document.getElementById("Terms_Dispatch").value= data.Terms_Dispatch;
+              })
+      }
+      
+  
+
+      function onFormsubmit() {
+        
+
+
+
+
+        let Supplier_Category = document.getElementById("Supplier_Category");
+        let Supplier_Name = document.getElementById("Supplier_Name");
+        let Supplier_Address   = document.getElementById("Supplier_Address");
+        let Contact_Person  = document.getElementById("Contact_Person");
+        let Email_ID  = document.getElementById("Email_ID");
+        let Mobile_Number = document.getElementById("Mobile_Number");
+        let Gst_Number  = document.getElementById("Gst_Number");
+        let Drug_Licenses   = document.getElementById("Drug_Licenses");
+        let Credit_Period  = document.getElementById("Credit_Period");
+        let Terms_Conditions = document.getElementById("Terms_Conditions");
+        let Terms_Payment   = document.getElementById("Terms_Payment");
+        let Terms_Dispatch = document.getElementById("Terms_Dispatch");
+
+        // console.log(Supplier_Category);
+        
+
+        let json_data = { }
+
+
+        json_data.Supplier_Category = Supplier_Category.value;
+        json_data.Supplier_Name = Supplier_Name.value;
+        json_data.Supplier_Address  = Supplier_Address.value;
+        json_data.Contact_Person  = Contact_Person.value;
+        json_data.Email_ID = Email_ID.value;
+        json_data.Mobile_Number = Mobile_Number.value;
+        json_data.Gst_Number  = Gst_Number.value;
+        json_data.Drug_Licenses  = Drug_Licenses.value;
+        json_data.Credit_Period = Credit_Period.value;
+        json_data.Terms_Conditions  = Terms_Conditions.value;
+        json_data.Terms_Payment  = Terms_Payment.value;
+        json_data.Terms_Dispatch = Terms_Dispatch.value;
+        
+
+        
+
+
+          if(edit && id){
+            json_data.Supplier_ID = id;
+            $.post("/Update_portal", json_data , function(data, status){
+                
+                console.log(data , status);
+                window.location.reload();
+                window.location = "/home"
+
+          });
+          }else{
+            $.post("/create_portal", json_data , function(data, status){
+                console.log(data , status);
+                  window.location.reload();
+                  window.location = "/home"
+             }); 
+
+
+          }
+      
+             
+             
+
+        
+      
+    }
+
+    //  pharmacy column hide...
+            $(document).ready(function () {
+                    toggleFields(); // call this first so we start out with the correct visibility depending on the selected form values
+                    // this will call our toggleFields function every time the selection value of our other field changes
+                  $("#Supplier_Category").change(function () {
+                    toggleFields();
+                });
+
+            });
+        // this toggles the visibility of other server
+        function toggleFields() {
+            if ($("#Supplier_Category").val() === "Pharmacy")
+                $("#DL").show();
+            else
+                $("#DL").hide();
+            }
+
+    </script>
+    <!-- End custom js for this page -->
+  </body>
+</html>

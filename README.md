@@ -1,1 +1,2 @@
-# nucliechealth
+-- to start this - npm start  and do the following incase not open automatically
+-- localhost:3000/home - for the homepage.

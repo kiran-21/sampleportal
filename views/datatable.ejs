@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="images/NH.png" />
+
+
+        <title>Nucleic Data Table</title>
+    </head>
+    <body>
+        
+        <div class="container">
+            <h1 class="text-center text-primary mt-3 mb-3"> <h2>Nucleic <b>Management</b> 
+                <button class="btn"><i style="float:right; margin-left:700px"><a href="/home" class="fa fa-home fa-2x"></a></i></a></button>
+            </h2></h1>
+            <div id="dvjson"></div>
+
+            <div class="card">
+                <!-- <div class="card-header"><a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>	</div> -->
+                <button type="button" onclick="downloadExcel()" class="btn btn-success me-2 "> Export to Excel </button>
+
+                <div>
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <!-- <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Action
+                        </button> -->
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                        
+                        <table id="customer_data" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Supplier ID</th>
+                                    <th>Supplier category</th>
+                                    <th>Supplier Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>Action</th>
+                                    <!-- <th>
+                                        <div style="width:280px;">
+                                            <div style="float: left; width: 40px"><button type="button" class="btn btn-outline-success" onclick="showUserEditBox('+object['']+')">Edit</button></div>
+                                            <div style="float: right; width: 40px"><button type="button" class="btn btn-outline-danger" onclick="userDelete('+object['']+')">Del</button></div>
+                                        </div>
+                                        
+                                    
+                                </th> -->
+        
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+  </body>
+
+
+<script>
+    $(document).ready(function(){
+
+var dataTable = $('#customer_data').DataTable({
+    'processing' : true,
+    'serverSide' : true,
+    'serverMethod' : 'get',
+    'ajax' : {
+        'url' : '/get_data'
+    },
+    'aaSorting' : [],
+  
+    'columns' : [
+        { data : 'Supplier_ID' ,modifier:{selected:true}},
+        { data : 'Supplier_Category',modifier:{selected:true} },
+        { data : 'Supplier_Name' , modifier:{selected:true}},
+        { data : 'Mobile_Number' , modifier:{selected:false}},
+        {mRender: function ( data, type, row ) {
+                        return '<a href=/home.html?edit=true&id='+row['Supplier_ID']+'>Edit</a>' + "   "+'<a href=add.html?id="'+row[0]+'">Delete</a>';}
+                }
+    ]
+});    
+});
+
+function downloadExcel () {
+    
+        var value = $('.dataTables_filter input').val();
+        $.get(`/get_dataExcel?search=${value}` , (data , textStatus)=>{
+            // console.log(data);
+            $("#dvjson").excelexportjs({
+                    containerid: "dvjson"
+                       , datatype: 'json'
+                       , dataset: data.Data
+                       , columns: getColumns(data.Data)     
+                });
+        })
+    }
+
+(function ($) {
+    var $defaults = {
+        containerid: null
+        , datatype: 'table'
+        , dataset: null
+        , columns: null
+        , returnUri: false
+	    , locale: 'en-US'   
+        , worksheetName: "My Worksheet"
+        , encoding: "utf-8"
+    };
+
+    var $settings = $defaults;
+
+    $.fn.excelexportjs = function (options) {
+
+        $settings = $.extend({}, $defaults, options);
+
+        var gridData = [];
+        var excelData;
+
+        return Initialize();
+		
+		function Initialize() {
+            var type = $settings.datatype.toLowerCase();
+
+            BuildDataStructure(type);
+
+
+            switch (type) {
+                case 'json':
+                    excelData = Export(ConvertDataStructureToTable());
+                    break;
+                case 'xml':
+                    excelData = Export(ConvertDataStructureToTable());
+                    break;
+            }
+
+       
+            if ($settings.returnUri) {
+                return excelData;
+            }
+            else {
+                if (!isBrowserIE())
+                {
+                    window.open(excelData);
+                }
+
+               
+            }
+        }
+
+        function BuildDataStructure(type) {
+            switch (type) {
+                case 'json':
+                    gridData = $settings.dataset;
+                    break;
+                case 'xml':
+                    $($settings.dataset).find("row").each(function (key, value) {
+                        var item = {};
+
+                        if (this.attributes != null && this.attributes.length > 0) {
+                            $(this.attributes).each(function () {
+                                item[this.name] = this.value;
+                            });
+
+                            gridData.push(item);
+                        }
+                    });
+            }
+        }
+
+        function ConvertDataStructureToTable() {
+            var result = "<table id='tabledata'>";
+
+            result += "<thead><tr>";
+            $($settings.columns).each(function (key, value) {
+                if (this.ishidden != true) {
+                    result += "<th";
+                    if (this.width != null) {
+                        result += " style='width: " + this.width + "'";
+                    }
+                    result += ">";
+                    result += this.headertext;
+                    result += "</th>";
+                }
+            });
+            result += "</tr></thead>";
+
+            result += "<tbody>";
+            $(gridData).each(function (key, value) {
+                result += "<tr>";
+                $($settings.columns).each(function (k, v) {
+                    if (value.hasOwnProperty(this.datafield)) {
+                        if (this.ishidden != true) {
+                            result += "<td";
+                            if (this.width != null) {
+                                result += " style='width: " + this.width + "'";
+                            }
+                            result += ">";
+                            result += value[this.datafield];
+                            result += "</td>";
+                        }
+                    }
+                });
+                result += "</tr>";
+            });
+            result += "</tbody>";
+
+            result += "</table>";
+
+            return result;
+        }
+
+        function Export(htmltable) {
+
+            if (isBrowserIE()) {
+        
+                exportToExcelIE(htmltable);
+            }
+            else {
+                var excelFile = "<html xml:lang=" + $defaults.locale + " xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+                excelFile += "<head>";
+                excelFile += '<meta http-equiv="Content-type" content="text/html;charset=' + $defaults.encoding + '" />';
+                excelFile += "<!--[if gte mso 9]>";
+                excelFile += "<xml>";
+                excelFile += "<x:ExcelWorkbook>";
+                excelFile += "<x:ExcelWorksheets>";
+                excelFile += "<x:ExcelWorksheet>";
+                excelFile += "<x:Name>";
+                excelFile += "{worksheet}";
+                excelFile += "</x:Name>";
+                excelFile += "<x:WorksheetOptions>";
+                excelFile += "<x:DisplayGridlines/>";
+                excelFile += "</x:WorksheetOptions>";
+                excelFile += "</x:ExcelWorksheet>";
+                excelFile += "</x:ExcelWorksheets>";
+                excelFile += "</x:ExcelWorkbook>";
+                excelFile += "</xml>";
+                excelFile += "<![endif]-->";
+                excelFile += "</head>";
+                excelFile += "<body>";
+                excelFile += htmltable.replace(/"/g, '\'');
+                excelFile += "</body>";
+                excelFile += "</html>";
+
+                var uri = "data:application/vnd.ms-excel;base64,";
+                var ctx = { worksheet: $settings.worksheetName, table: htmltable };
+
+                return (uri + base64(format(excelFile, ctx)));
+            }
+        }
+
+        function base64(s) {
+            return window.btoa(unescape(encodeURIComponent(s)));
+        }
+
+        function format(s, c) {
+            return s.replace(/{(\w+)}/g, function (m, p) { return c[p]; });
+        }
+
+        function isBrowserIE() {
+            var msie = !!navigator.userAgent.match(/Trident/g) || !!navigator.userAgent.match(/MSIE/g);
+            if (msie > 0) {  // If Internet Explorer, return true
+                return true;
+            }
+            else {  // If another browser, return false
+                return false;
+            }
+        }
+
+        
+        
+    };
+})(jQuery);
+
+
+//get columns
+function getColumns(paramData){
+
+	var header = [];
+	$.each(paramData[0], function (key, value) {
+		//console.log(key + '==' + value);
+		var obj = {}
+		obj["headertext"] = key;
+		obj["datatype"] = "string";
+		obj["datafield"] = key;
+		header.push(obj);
+	}); 
+	return header;
+
+}
+
+
+
+
+
+</script>
+</html>
